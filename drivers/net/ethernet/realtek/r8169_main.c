@@ -2295,8 +2295,11 @@ static void rtl_release_firmware(struct rtl8169_private *tp)
 static void rtl_apply_firmware(struct rtl8169_private *tp)
 {
 	/* TODO: release firmware if rtl_fw_write_firmware signals failure. */
-	if (tp->rtl_fw)
+	if (tp->rtl_fw) {
 		rtl_fw_write_firmware(tp, tp->rtl_fw);
+		/* At least one firmware doesn't reset tp->ocp_base. */
+		tp->ocp_base = OCP_STD_PHY_BASE;
+	}
 }
 
 static void rtl_apply_firmware_cond(struct rtl8169_private *tp, u8 reg, u16 val)
