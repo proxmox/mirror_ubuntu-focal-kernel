@@ -1548,6 +1548,7 @@ static const struct pci_device_id rtw_pci_id_table[] = {
 #endif
 #ifdef CONFIG_RTW88_8822CE
 	{ RTK_PCI_DEVICE(PCI_VENDOR_ID_REALTEK, 0xC822, rtw8822c_hw_spec) },
+	{ RTK_PCI_DEVICE(PCI_VENDOR_ID_REALTEK, 0xC82F, rtw8822c_hw_spec) },
 #endif
 #ifdef CONFIG_RTW88_8723DE
 	{ RTK_PCI_DEVICE(PCI_VENDOR_ID_REALTEK, 0xD723, rtw8723d_hw_spec) },
