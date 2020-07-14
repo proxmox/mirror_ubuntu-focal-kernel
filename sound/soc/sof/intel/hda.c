@@ -477,7 +477,7 @@ static int hda_init_caps(struct snd_sof_dev *sdev)
 	}
 
 	/* create codec instances */
-	hda_codec_probe_bus(sdev);
+	hda_codec_probe_bus(sdev, hda_codec_use_common_hdmi);
 
 	if (!HDA_IDISP_CODEC(bus->codec_mask))
 		hda_codec_i915_put(sdev);
