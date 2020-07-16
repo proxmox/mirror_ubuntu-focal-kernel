@@ -1991,7 +1991,7 @@ intel-ishtp-loader
 intel-lpss
 intel-lpss-acpi
 intel-lpss-pci
-intel-rapl-perf
+rapl
 intel-rng
 intel-rst
 intel-smartconnect
