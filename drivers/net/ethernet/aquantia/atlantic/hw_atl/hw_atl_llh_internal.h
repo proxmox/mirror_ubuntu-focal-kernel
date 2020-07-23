@@ -2576,6 +2576,10 @@
 /* Default value of bitfield l3_da0[1F:0] */
 #define HW_ATL_RPF_L3_DSTA_DEFAULT 0x0
 
+#define HW_ATL_MIF_RESET_TIMEOUT_ADR 0x00000348
+
 #define HW_ATL_FW_SM_RAM        0x2U
+#define HW_ATL_FW_SM_RESET1     0x3U
+#define HW_ATL_FW_SM_RESET2     0x4U
 
 #endif /* HW_ATL_LLH_INTERNAL_H */

@@ -755,6 +755,9 @@ void hw_atl_rpfl3l4_ipv6_dest_addr_set(struct aq_hw_s *aq_hw, u8 location,
 /* get global microprocessor ram semaphore */
 u32 hw_atl_sem_ram_get(struct aq_hw_s *self);
 
+u32 hw_atl_sem_reset1_get(struct aq_hw_s *self);
+u32 hw_atl_sem_reset2_get(struct aq_hw_s *self);
+
 /* get global microprocessor scratch pad register */
 u32 hw_atl_scrpad_get(struct aq_hw_s *aq_hw, u32 scratch_scp);
 
