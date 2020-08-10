@@ -689,7 +689,6 @@ cdns-csi2tx
 cdns-pltfrm
 cdns3
 cdns3-pci-wrap
-cec-gpio
 ceph
 cfag12864b
 cfag12864bfb
@@ -1990,7 +1989,6 @@ intel-ishtp-loader
 intel-lpss
 intel-lpss-acpi
 intel-lpss-pci
-rapl
 intel-rng
 intel-rst
 intel-smartconnect
@@ -3542,6 +3540,7 @@ raid6_pq
 raid_class
 rainshadow-cec
 ramoops
+rapl
 rave-sp
 rave-sp-backlight
 rave-sp-pwrbutton
@@ -4145,6 +4144,7 @@ snd
 snd-ac97-codec
 snd-acp3x-pcm-dma
 snd-acp3x-pdm-dma
+snd-acp3x-rn
 snd-ad1889
 snd-ak4113
 snd-ak4114
