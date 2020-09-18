@@ -7,6 +7,7 @@
  */
 
 #include <linux/crc32.h>
+#include <linux/delay.h>
 #include <linux/property.h>
 #include <linux/slab.h>
 #include "tb.h"
@@ -386,8 +387,8 @@ static int tb_drom_parse_entries(struct tb_switch *sw)
 		struct tb_drom_entry_header *entry = (void *) (sw->drom + pos);
 		if (pos + 1 == drom_size || pos + entry->len > drom_size
 				|| !entry->len) {
-			tb_sw_warn(sw, "drom buffer overrun, aborting\n");
-			return -EIO;
+			tb_sw_warn(sw, "DROM buffer overrun\n");
+			return -EILSEQ;
 		}
 
 		switch (entry->type) {
@@ -493,7 +494,8 @@ int tb_drom_read(struct tb_switch *sw)
 	u16 size;
 	u32 crc;
 	struct tb_drom_header *header;
-	int res;
+	int res, retries = 1;
+
 	if (sw->drom)
 		return 0;
 
@@ -581,7 +583,17 @@ parse:
 		tb_sw_warn(sw, "drom device_rom_revision %#x unknown\n",
 			header->device_rom_revision);
 
-	return tb_drom_parse_entries(sw);
+	res = tb_drom_parse_entries(sw);
+	/* If the DROM parsing fails, wait a moment and retry once */
+	if (res == -EILSEQ && retries--) {
+		tb_sw_warn(sw, "parsing DROM failed, retrying\n");
+		msleep(100);
+		res = tb_eeprom_read_n(sw, 0, sw->drom, size);
+		if (!res)
+			goto parse;
+	}
+
+	return res;
 err:
 	kfree(sw->drom);
 	sw->drom = NULL;
