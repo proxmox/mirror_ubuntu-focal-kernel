@@ -1219,6 +1219,14 @@ void intel_psr_init(struct drm_i915_private *dev_priv)
 	if (!dev_priv->psr.sink_support)
 		return;
 
+	/*
+	 * PSR was disabled by module parameters but the underlying panel is
+	 * depending on it, so use per-chip default to probe that automatically.
+	 */
+	if ((dev_priv->psr.dp->edid_quirks & BIT(DP_QUIRK_FORCE_PSR_CHIP_DEFAULT)) &&
+	    i915_modparams.enable_psr == 0)
+		i915_modparams.enable_psr = -1;
+
 	if (i915_modparams.enable_psr == -1)
 		if (INTEL_GEN(dev_priv) < 9 || !dev_priv->vbt.psr.enable)
 			i915_modparams.enable_psr = 0;

@@ -1447,6 +1447,14 @@ enum drm_dp_quirk {
 	 * capabilities advertised.
 	 */
 	DP_QUIRK_FORCE_DPCD_BACKLIGHT,
+	/**
+	 * @DP_QUIRK_FORCE_PSR_CHIP_DEFAULT
+	 *
+	 * PSR was disabled by default in Ubuntu 5.0 kernels and on, but some
+	 * platforms might be depending on them. If so, use per-chip default to
+	 * probe that automatically.
+	 */
+	DP_QUIRK_FORCE_PSR_CHIP_DEFAULT,
 };
 
 /**
