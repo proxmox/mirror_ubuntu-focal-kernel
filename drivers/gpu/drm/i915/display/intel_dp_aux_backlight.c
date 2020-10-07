@@ -328,9 +328,13 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
 	struct intel_dp *intel_dp = enc_to_intel_dp(&intel_connector->encoder->base);
 	struct drm_device *dev = intel_connector->base.dev;
 	struct drm_i915_private *dev_priv = to_i915(dev);
+	bool force_dpcd;
+
+	force_dpcd = drm_dp_has_quirk(&intel_dp->desc, intel_dp->edid_quirks,
+				      DP_QUIRK_FORCE_DPCD_BACKLIGHT);
 
 	if (i915_modparams.enable_dpcd_backlight == 0 ||
-	    !intel_dp_aux_display_control_capable(intel_connector))
+	    (!force_dpcd && !intel_dp_aux_display_control_capable(intel_connector)))
 		return -ENODEV;
 
 	/*
@@ -339,9 +343,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *intel_connector)
 	 */
 	if (dev_priv->vbt.backlight.type !=
 	    INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE &&
-	    i915_modparams.enable_dpcd_backlight != 1 &&
-	    !drm_dp_has_quirk(&intel_dp->desc, intel_dp->edid_quirks,
-			      DP_QUIRK_FORCE_DPCD_BACKLIGHT)) {
+	    i915_modparams.enable_dpcd_backlight != 1 && !force_dpcd) {
 		DRM_DEV_INFO(dev->dev,
 			     "Panel advertises DPCD backlight support, but "
 			     "VBT disagrees. If your backlight controls "
