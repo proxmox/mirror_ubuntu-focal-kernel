@@ -12460,11 +12460,13 @@ CONFIG_EXTRA_TARGETS                            policy<{'ppc64el': '""'}>
 CONFIG_PPC_MEM_KEYS                             policy<{'ppc64el': 'n'}>
 CONFIG_PPC_SECURE_BOOT                          policy<{'ppc64el': 'y'}>
 CONFIG_PPC_SECVAR_SYSFS                         policy<{'ppc64el': 'y'}>
+CONFIG_PPC_RTAS_FILTER                          policy<{'ppc64el': 'y'}>
 #
 CONFIG_FA_DUMP                                  note<LP:1415562>
 CONFIG_PPC_MEM_KEYS                             flag<REVIEW> note<LP:1776967>
 CONFIG_PPC_SECURE_BOOT                          mark<ENFORCED> note<LP:1866909> note<LP:1855668>
 CONFIG_PPC_SECVAR_SYSFS                         mark<ENFORCED> note<LP:1866909>
+CONFIG_PPC_RTAS_FILTER                          mark<ENFORCED> note<CVE-2020-27777>
 
 # Menu: Processor type and features >> Architecture: s390
 CONFIG_SCHED_TOPOLOGY                           policy<{'s390x': 'y'}>
