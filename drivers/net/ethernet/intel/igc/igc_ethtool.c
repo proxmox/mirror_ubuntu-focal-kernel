@@ -1703,7 +1703,8 @@ static int igc_get_link_ksettings(struct net_device *netdev,
 						     Asym_Pause);
 	}
 
-	status = rd32(IGC_STATUS);
+	status = pm_runtime_suspended(&adapter->pdev->dev) ?
+		 0 : rd32(IGC_STATUS);
 
 	if (status & IGC_STATUS_LU) {
 		if (status & IGC_STATUS_SPEED_1000) {
