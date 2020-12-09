@@ -6691,6 +6691,7 @@ EXPORT_SYMBOL	 vmlinux 0x00000000	do_blank_screen
 EXPORT_SYMBOL	 vmlinux 0x00000000	do_clone_file_range
 EXPORT_SYMBOL	 vmlinux 0x00000000	do_settimeofday64
 EXPORT_SYMBOL	 vmlinux 0x00000000	do_splice_direct
+EXPORT_SYMBOL	 vmlinux 0x00000000	do_uaccess_flush
 EXPORT_SYMBOL	 vmlinux 0x00000000	do_unblank_screen
 EXPORT_SYMBOL	 vmlinux 0x00000000	do_wait_intr
 EXPORT_SYMBOL	 vmlinux 0x00000000	do_wait_intr_irq
@@ -10115,6 +10116,7 @@ EXPORT_SYMBOL	 vmlinux 0x00000000	twl_i2c_read
 EXPORT_SYMBOL	 vmlinux 0x00000000	twl_i2c_write
 EXPORT_SYMBOL	 vmlinux 0x00000000	twl_rev
 EXPORT_SYMBOL	 vmlinux 0x00000000	twl_set_regcache_bypass
+EXPORT_SYMBOL	 vmlinux 0x00000000	uaccess_flush_key
 EXPORT_SYMBOL	 vmlinux 0x00000000	uart_add_one_port
 EXPORT_SYMBOL	 vmlinux 0x00000000	uart_get_baud_rate
 EXPORT_SYMBOL	 vmlinux 0x00000000	uart_get_divisor
