@@ -4025,7 +4025,6 @@ rcar_thermal
 rcuperf
 rdc321x-southbridge
 rdma_cm
-rdma_rxe
 rdma_ucm
 rds
 rds_rdma
@@ -4498,7 +4497,6 @@ sis_i2c
 sisfb
 sisusbvga
 sit
-siw
 sja1000
 sja1000_isa
 sja1000_platform
