@@ -8829,7 +8829,6 @@ CONFIG_USB_IDMOUSE                              policy<{'amd64': 'm', 'arm64': '
 CONFIG_USB_FTDI_ELAN                            policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', }>
 CONFIG_USB_APPLEDISPLAY                         policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', }>
 CONFIG_USB_SISUSBVGA                            policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', }>
-CONFIG_USB_SISUSBVGA_CON                        policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'i386': 'n', 'ppc64el': 'n', }>
 CONFIG_USB_LD                                   policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', }>
 CONFIG_USB_TRANCEVIBRATOR                       policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', }>
 CONFIG_USB_IOWARRIOR                            policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', }>
