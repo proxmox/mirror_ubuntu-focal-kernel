@@ -11011,7 +11011,6 @@ CONFIG_ZPOOL                                    policy<{'amd64': 'y', 'arm64': '
 CONFIG_ZBUD                                     policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
 CONFIG_Z3FOLD                                   policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', 's390x': 'm'}>
 CONFIG_ZSMALLOC                                 policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
-CONFIG_PGTABLE_MAPPING                          policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'n'}>
 CONFIG_ZSMALLOC_STAT                            policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'i386': 'n', 'ppc64el': 'n', 's390x': 'n'}>
 CONFIG_DEFERRED_STRUCT_PAGE_INIT                policy<{'amd64': 'n', 'arm64': 'n', 'ppc64el': 'n', 's390x': 'n'}>
 CONFIG_IDLE_PAGE_TRACKING                       policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
