@@ -49,6 +49,7 @@
 #include "en/xdp.h"
 #include "en/xsk/rx.h"
 #include "en/health.h"
+#include "en/txrx.h"
 
 static inline bool mlx5e_rx_hw_stamp(struct hwtstamp_config *config)
 {
@@ -1022,6 +1023,9 @@ static inline void mlx5e_build_rx_skb(struct mlx5_cqe64 *cqe,
 		mlx5e_enable_ecn(rq, skb);
 
 	skb->protocol = eth_type_trans(skb, netdev);
+
+	if (unlikely(mlx5e_skb_is_multicast(skb)))
+		stats->mcast_packets++;
 }
 
 static inline void mlx5e_complete_rx_cqe(struct mlx5e_rq *rq,
