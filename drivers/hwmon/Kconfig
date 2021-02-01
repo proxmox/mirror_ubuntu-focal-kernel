@@ -1922,6 +1922,17 @@ config SENSORS_XGENE
 	  If you say yes here you get support for the temperature
 	  and power sensors for APM X-Gene SoC.
 
+config SENSORS_AHC1EC0_HWMON
+	tristate "Advantech AHC1EC0 Hardware Monitor Function"
+	depends on MFD_AHC1EC0
+	depends on UBUNTU_ODM_DRIVERS
+	help
+	  This driver provide support for the hardware monitoring functionality
+	  for Advantech AHC1EC0 embedded controller on the board.
+
+	  This driver provides the sysfs attributes for applications to monitor
+	  the system status, including system temperatures, voltages, current.
+
 if ACPI
 
 comment "ACPI drivers"
