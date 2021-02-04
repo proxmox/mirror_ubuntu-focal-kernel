@@ -10871,7 +10871,7 @@ CONFIG_TRACER_SNAPSHOT_PER_CPU_SWAP             policy<{'amd64': 'n', 'arm64': '
 CONFIG_STACK_TRACER                             policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
 CONFIG_BLK_DEV_IO_TRACE                         policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
 CONFIG_KPROBE_EVENTS                            policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
-CONFIG_KPROBE_EVENTS_ON_NOTRACE                 policy<{'amd64': 'n', 'i386': 'n', 'ppc64el': 'n', 's390x': 'n'}>
+CONFIG_KPROBE_EVENTS_ON_NOTRACE                 policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'i386': 'n', 'ppc64el': 'n', 's390x': 'n'}>
 CONFIG_UPROBE_EVENTS                            policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
 CONFIG_BPF_KPROBE_OVERRIDE                      policy<{'amd64': 'y', 'arm64': 'y', 'i386': 'y', 'ppc64el': 'y'}>
 CONFIG_FTRACE_STARTUP_TEST                      policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'i386': 'n', 'ppc64el': 'n', 's390x': 'n'}>
