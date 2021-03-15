@@ -2812,7 +2812,7 @@ CONFIG_IOMMU_IO_PGTABLE_ARMV7S                  policy<{'arm64': 'n', 'armhf': '
 
 # Menu: Device Drivers >> IOMMU Hardware Support >> Support for Intel IOMMU using DMA Remapping Devices
 CONFIG_INTEL_IOMMU                              policy<{'amd64': 'y', 'i386': 'y'}>
-CONFIG_INTEL_IOMMU_SVM                          policy<{'amd64': 'y', 'i386': 'y'}>
+CONFIG_INTEL_IOMMU_SVM                          policy<{'amd64': 'y', 'i386': '-'}>
 CONFIG_INTEL_IOMMU_DEFAULT_ON                   policy<{'amd64': 'n', 'i386': 'n'}>
 #
 CONFIG_INTEL_IOMMU_DEFAULT_ON                   note<the IOMMU can trigger boot failures> flag<REVIEW>
