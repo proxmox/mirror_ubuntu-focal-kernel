@@ -11353,6 +11353,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x997c4347	unmap_kernel_range
 EXPORT_SYMBOL_GPL	 vmlinux 0x99829b72	pci_bridge_secondary_bus_reset
 EXPORT_SYMBOL_GPL	 vmlinux 0x99a37964	gmap_pmdp_csp
 EXPORT_SYMBOL_GPL	 vmlinux 0x99e5f999	rt_mutex_lock
+EXPORT_SYMBOL_GPL	 vmlinux 0x99f2d00a	sysfs_emit_at
 EXPORT_SYMBOL_GPL	 vmlinux 0x9a11a0fc	crypto_attr_alg_name
 EXPORT_SYMBOL_GPL	 vmlinux 0x9a6268ba	virtqueue_kick
 EXPORT_SYMBOL_GPL	 vmlinux 0x9a978202	shmem_file_setup_with_mnt
@@ -12363,6 +12364,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xe753b68d	devlink_fmsg_arr_pair_nest_end
 EXPORT_SYMBOL_GPL	 vmlinux 0xe7689985	blk_mq_flush_busy_ctxs
 EXPORT_SYMBOL_GPL	 vmlinux 0xe769232e	sprint_symbol_no_offset
 EXPORT_SYMBOL_GPL	 vmlinux 0xe773305d	sk_set_memalloc
+EXPORT_SYMBOL_GPL	 vmlinux 0xe783e261	sysfs_emit
 EXPORT_SYMBOL_GPL	 vmlinux 0xe78495b1	sk_msg_return_zero
 EXPORT_SYMBOL_GPL	 vmlinux 0xe79bf0c4	klp_shadow_get
 EXPORT_SYMBOL_GPL	 vmlinux 0xe7aceaef	tpm_default_chip
