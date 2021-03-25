@@ -989,8 +989,8 @@ struct cifs_ses {
 	bool domainAuto:1;
 	__u16 session_flags;
 	__u8 smb3signingkey[SMB3_SIGN_KEY_SIZE];
-	__u8 smb3encryptionkey[SMB3_SIGN_KEY_SIZE];
-	__u8 smb3decryptionkey[SMB3_SIGN_KEY_SIZE];
+	__u8 smb3encryptionkey[SMB3_ENC_DEC_KEY_SIZE];
+	__u8 smb3decryptionkey[SMB3_ENC_DEC_KEY_SIZE];
 	__u8 preauth_sha_hash[SMB2_PREAUTH_HASH_SIZE];
 
 	/*

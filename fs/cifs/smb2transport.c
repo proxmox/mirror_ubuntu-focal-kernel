@@ -235,7 +235,8 @@ static int generate_key(struct cifs_ses *ses, struct kvec label,
 {
 	unsigned char zero = 0x0;
 	__u8 i[4] = {0, 0, 0, 1};
-	__u8 L[4] = {0, 0, 0, 128};
+	__u8 L128[4] = {0, 0, 0, 128};
+	__u8 L256[4] = {0, 0, 1, 0};
 	int rc = 0;
 	unsigned char prfhash[SMB2_HMACSHA256_SIZE];
 	unsigned char *hashptr = prfhash;
@@ -291,8 +292,14 @@ static int generate_key(struct cifs_ses *ses, struct kvec label,
 		goto smb3signkey_ret;
 	}
 
-	rc = crypto_shash_update(&server->secmech.sdeschmacsha256->shash,
-				L, 4);
+	if ((server->cipher_type == SMB2_ENCRYPTION_AES256_CCM) ||
+		(server->cipher_type == SMB2_ENCRYPTION_AES256_GCM)) {
+		rc = crypto_shash_update(&server->secmech.sdeschmacsha256->shash,
+				L256, 4);
+	} else {
+		rc = crypto_shash_update(&server->secmech.sdeschmacsha256->shash,
+				L128, 4);
+	}
 	if (rc) {
 		cifs_server_dbg(VFS, "%s: Could not update with L\n", __func__);
 		goto smb3signkey_ret;
@@ -327,6 +334,9 @@ generate_smb3signingkey(struct cifs_ses *ses,
 			const struct derivation_triplet *ptriplet)
 {
 	int rc;
+#ifdef CONFIG_CIFS_DEBUG_DUMP_KEYS
+	struct TCP_Server_Info *server = ses->server;
+#endif
 
 	rc = generate_key(ses, ptriplet->signing.label,
 			  ptriplet->signing.context, ses->smb3signingkey,
@@ -336,13 +346,13 @@ generate_smb3signingkey(struct cifs_ses *ses,
 
 	rc = generate_key(ses, ptriplet->encryption.label,
 			  ptriplet->encryption.context, ses->smb3encryptionkey,
-			  SMB3_SIGN_KEY_SIZE);
+			  SMB3_ENC_DEC_KEY_SIZE);
 	if (rc)
 		return rc;
 
 	rc = generate_key(ses, ptriplet->decryption.label,
 			  ptriplet->decryption.context,
-			  ses->smb3decryptionkey, SMB3_SIGN_KEY_SIZE);
+			  ses->smb3decryptionkey, SMB3_ENC_DEC_KEY_SIZE);
 
 	if (rc)
 		return rc;
@@ -355,14 +365,23 @@ generate_smb3signingkey(struct cifs_ses *ses,
 	 */
 	cifs_dbg(VFS, "Session Id    %*ph\n", (int)sizeof(ses->Suid),
 			&ses->Suid);
+	cifs_dbg(VFS, "Cipher type   %d\n", server->cipher_type);
 	cifs_dbg(VFS, "Session Key   %*ph\n",
 		 SMB2_NTLMV2_SESSKEY_SIZE, ses->auth_key.response);
 	cifs_dbg(VFS, "Signing Key   %*ph\n",
 		 SMB3_SIGN_KEY_SIZE, ses->smb3signingkey);
-	cifs_dbg(VFS, "ServerIn Key  %*ph\n",
-		 SMB3_SIGN_KEY_SIZE, ses->smb3encryptionkey);
-	cifs_dbg(VFS, "ServerOut Key %*ph\n",
-		 SMB3_SIGN_KEY_SIZE, ses->smb3decryptionkey);
+	if ((server->cipher_type == SMB2_ENCRYPTION_AES256_CCM) ||
+		(server->cipher_type == SMB2_ENCRYPTION_AES256_GCM)) {
+		cifs_dbg(VFS, "ServerIn Key  %*ph\n",
+				SMB3_GCM256_CRYPTKEY_SIZE, ses->smb3encryptionkey);
+		cifs_dbg(VFS, "ServerOut Key %*ph\n",
+				SMB3_GCM256_CRYPTKEY_SIZE, ses->smb3decryptionkey);
+	} else {
+		cifs_dbg(VFS, "ServerIn Key  %*ph\n",
+				SMB3_GCM128_CRYPTKEY_SIZE, ses->smb3encryptionkey);
+		cifs_dbg(VFS, "ServerOut Key %*ph\n",
+				SMB3_GCM128_CRYPTKEY_SIZE, ses->smb3decryptionkey);
+	}
 #endif
 	return rc;
 }
