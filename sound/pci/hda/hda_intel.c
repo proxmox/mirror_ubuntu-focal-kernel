@@ -1026,6 +1026,7 @@ static int azx_prepare(struct device *dev)
 
 	chip = card->private_data;
 	chip->pm_prepared = 1;
+	snd_power_change_state(card, SNDRV_CTL_POWER_D3hot);
 
 	flush_work(&azx_bus(chip)->unsol_work);
 
@@ -1041,6 +1042,7 @@ static void azx_complete(struct device *dev)
 	struct azx *chip;
 
 	chip = card->private_data;
+	snd_power_change_state(card, SNDRV_CTL_POWER_D0);
 	chip->pm_prepared = 0;
 }
 
