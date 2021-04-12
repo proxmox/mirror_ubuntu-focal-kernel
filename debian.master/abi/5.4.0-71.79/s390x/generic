@@ -5398,7 +5398,6 @@ EXPORT_SYMBOL	 vmlinux 0xa70cc65c	set_binfmt
 EXPORT_SYMBOL	 vmlinux 0xa70ea6d7	ZSTD_DCtxWorkspaceBound
 EXPORT_SYMBOL	 vmlinux 0xa7113023	request_key_tag
 EXPORT_SYMBOL	 vmlinux 0xa725d706	dcb_ieee_getapp_default_prio_mask
-EXPORT_SYMBOL	 vmlinux 0xa72ec9db	follow_pte_pmd
 EXPORT_SYMBOL	 vmlinux 0xa74c9877	refcount_dec_and_rtnl_lock
 EXPORT_SYMBOL	 vmlinux 0xa76158b7	scsi_host_put
 EXPORT_SYMBOL	 vmlinux 0xa7666f3e	pci_resize_resource
@@ -11380,6 +11379,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x9bc77923	__tracepoint_neigh_update
 EXPORT_SYMBOL_GPL	 vmlinux 0x9bd1b255	platform_get_irq_byname_optional
 EXPORT_SYMBOL_GPL	 vmlinux 0x9be9c29d	net_ns_get_ownership
 EXPORT_SYMBOL_GPL	 vmlinux 0x9bece81b	mpi_cmp_ui
+EXPORT_SYMBOL_GPL	 vmlinux 0x9c2207c0	follow_pte
 EXPORT_SYMBOL_GPL	 vmlinux 0x9c3682bf	sock_gen_put
 EXPORT_SYMBOL_GPL	 vmlinux 0x9c743459	bpf_trace_run8
 EXPORT_SYMBOL_GPL	 vmlinux 0x9cb3c8f5	tty_buffer_unlock_exclusive

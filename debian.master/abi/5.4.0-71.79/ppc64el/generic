@@ -7117,7 +7117,6 @@ EXPORT_SYMBOL	 vmlinux 0x56c39e63	simple_fill_super
 EXPORT_SYMBOL	 vmlinux 0x56c8799d	scsi_kunmap_atomic_sg
 EXPORT_SYMBOL	 vmlinux 0x56cdf384	security_binder_transaction
 EXPORT_SYMBOL	 vmlinux 0x56dd3813	agp_create_memory
-EXPORT_SYMBOL	 vmlinux 0x56e1c5fe	follow_pte_pmd
 EXPORT_SYMBOL	 vmlinux 0x56f6c7de	lockref_get_not_zero
 EXPORT_SYMBOL	 vmlinux 0x56fa8fdc	dquot_transfer
 EXPORT_SYMBOL	 vmlinux 0x570695c2	starget_for_each_device
@@ -18184,6 +18183,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x35bfdeb2	kvmppc_host_rm_ops_hv
 EXPORT_SYMBOL_GPL	 vmlinux 0x35c0bf36	security_path_rmdir
 EXPORT_SYMBOL_GPL	 vmlinux 0x35c3f305	bio_associate_blkg_from_css
 EXPORT_SYMBOL_GPL	 vmlinux 0x35c9b533	irq_setup_alt_chip
+EXPORT_SYMBOL_GPL	 vmlinux 0x35dc78b7	follow_pte
 EXPORT_SYMBOL_GPL	 vmlinux 0x35f31c54	arch_set_freq_scale
 EXPORT_SYMBOL_GPL	 vmlinux 0x36075bb5	iommu_group_register_notifier
 EXPORT_SYMBOL_GPL	 vmlinux 0x360e60d1	rdev_get_regmap
@@ -21195,7 +21195,6 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xc58ad7a0	do_unbind_con_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0xc58f5cbd	crypto_unregister_algs
 EXPORT_SYMBOL_GPL	 vmlinux 0xc5996c8c	pkcs7_get_content_data
 EXPORT_SYMBOL_GPL	 vmlinux 0xc5a5c678	uart_parse_earlycon
-EXPORT_SYMBOL_GPL	 vmlinux 0xc5aa654d	xhci_init_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0xc5b00481	dev_pm_opp_get_sharing_cpus
 EXPORT_SYMBOL_GPL	 vmlinux 0xc5b5688c	dma_resv_wait_timeout_rcu
 EXPORT_SYMBOL_GPL	 vmlinux 0xc5c4eb9e	crypto_ahash_final
@@ -22062,6 +22061,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xee6b71c4	syscon_regmap_lookup_by_compatible
 EXPORT_SYMBOL_GPL	 vmlinux 0xee6f4c7f	pci_epc_destroy
 EXPORT_SYMBOL_GPL	 vmlinux 0xee70a92c	get_kernel_pages
 EXPORT_SYMBOL_GPL	 vmlinux 0xeea0a15a	platform_unregister_drivers
+EXPORT_SYMBOL_GPL	 vmlinux 0xeea4dcde	xhci_init_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0xeeb2eee2	blkcg_print_blkgs
 EXPORT_SYMBOL_GPL	 vmlinux 0xeec54d8f	skb_gso_validate_mac_len
 EXPORT_SYMBOL_GPL	 vmlinux 0xeec56346	ata_sas_port_destroy

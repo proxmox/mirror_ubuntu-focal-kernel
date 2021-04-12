@@ -7349,7 +7349,6 @@ EXPORT_SYMBOL	 vmlinux 0x4fc3986e	security_cred_getsecid
 EXPORT_SYMBOL	 vmlinux 0x4fc67935	tcf_classify
 EXPORT_SYMBOL	 vmlinux 0x4fcc8ad2	ex_handler_uaccess
 EXPORT_SYMBOL	 vmlinux 0x4fdee897	i8042_command
-EXPORT_SYMBOL	 vmlinux 0x5007c66e	follow_pte_pmd
 EXPORT_SYMBOL	 vmlinux 0x50097088	security_tun_dev_free_security
 EXPORT_SYMBOL	 vmlinux 0x5009c71d	glob_match
 EXPORT_SYMBOL	 vmlinux 0x5009c88f	rproc_elf_sanity_check
@@ -19889,6 +19888,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x515bf892	dma_get_slave_channel
 EXPORT_SYMBOL_GPL	 vmlinux 0x516950a9	i2c_dw_probe
 EXPORT_SYMBOL_GPL	 vmlinux 0x5187ac4b	xen_store_evtchn
 EXPORT_SYMBOL_GPL	 vmlinux 0x518c2fc6	hpet_rtc_dropped_irq
+EXPORT_SYMBOL_GPL	 vmlinux 0x5197aebd	xhci_init_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0x51b96ad5	scsi_internal_device_unblock_nowait
 EXPORT_SYMBOL_GPL	 vmlinux 0x51c220cc	pinctrl_pm_select_default_state
 EXPORT_SYMBOL_GPL	 vmlinux 0x51c5da4c	blk_revalidate_disk_zones
@@ -20594,7 +20594,6 @@ EXPORT_SYMBOL_GPL	 vmlinux 0x71e33b9d	clk_register_fixed_rate
 EXPORT_SYMBOL_GPL	 vmlinux 0x71f6670b	__cookie_v6_check
 EXPORT_SYMBOL_GPL	 vmlinux 0x71fbb833	devm_spi_mem_dirmap_create
 EXPORT_SYMBOL_GPL	 vmlinux 0x720615db	register_acpi_bus_type
-EXPORT_SYMBOL_GPL	 vmlinux 0x72275117	xhci_init_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0x722df538	skb_mpls_dec_ttl
 EXPORT_SYMBOL_GPL	 vmlinux 0x7238dbb3	tty_find_polling_driver
 EXPORT_SYMBOL_GPL	 vmlinux 0x72399ccc	clk_hw_get_parent
@@ -22116,6 +22115,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xb73713d7	nvmem_add_cell_lookups
 EXPORT_SYMBOL_GPL	 vmlinux 0xb75164a7	vfio_add_group_dev
 EXPORT_SYMBOL_GPL	 vmlinux 0xb75573d7	device_link_del
 EXPORT_SYMBOL_GPL	 vmlinux 0xb7578af0	mbox_controller_unregister
+EXPORT_SYMBOL_GPL	 vmlinux 0xb761318b	sev_active
 EXPORT_SYMBOL_GPL	 vmlinux 0xb762390c	pm_clk_runtime_suspend
 EXPORT_SYMBOL_GPL	 vmlinux 0xb76f2749	devlink_dpipe_match_put
 EXPORT_SYMBOL_GPL	 vmlinux 0xb790916c	led_classdev_suspend
@@ -23596,6 +23596,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xf7750462	da903x_reads
 EXPORT_SYMBOL_GPL	 vmlinux 0xf77b56ca	__cpufreq_driver_target
 EXPORT_SYMBOL_GPL	 vmlinux 0xf7866b4f	bind_evtchn_to_irqhandler_lateeoi
 EXPORT_SYMBOL_GPL	 vmlinux 0xf79ce3d0	ohci_hub_status_data
+EXPORT_SYMBOL_GPL	 vmlinux 0xf7a22e54	follow_pte
 EXPORT_SYMBOL_GPL	 vmlinux 0xf7a2687e	user_free_preparse
 EXPORT_SYMBOL_GPL	 vmlinux 0xf7bc95b0	devlink_fmsg_pair_nest_start
 EXPORT_SYMBOL_GPL	 vmlinux 0xf7be0ae4	devfreq_get_devfreq_by_phandle
