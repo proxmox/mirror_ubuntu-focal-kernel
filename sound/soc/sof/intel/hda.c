@@ -387,6 +387,9 @@ static int hda_init_caps(struct snd_sof_dev *sdev)
 	if (bus->mlcap)
 		snd_hdac_ext_bus_get_ml_capabilities(bus);
 
+	/* create codec instances */
+	hda_codec_probe_bus(sdev, hda_codec_use_common_hdmi);
+
 	/* codec detection */
 	if (!bus->codec_mask) {
 		dev_info(bus->dev, "no hda codecs found!\n");
@@ -479,9 +482,6 @@ static int hda_init_caps(struct snd_sof_dev *sdev)
 		mach_params->common_hdmi_codec_drv = hda_codec_use_common_hdmi;
 		mach_params->dmic_num = dmic_num;
 	}
-
-	/* create codec instances */
-	hda_codec_probe_bus(sdev, hda_codec_use_common_hdmi);
 
 	if (!HDA_IDISP_CODEC(bus->codec_mask))
 		hda_codec_i915_put(sdev);
