@@ -11,5 +11,7 @@
 #define ICE_DEV_ID_E810C_QSFP		0x1592
 /* Intel(R) Ethernet Controller E810-C for SFP */
 #define ICE_DEV_ID_E810C_SFP		0x1593
+/* Intel(R) Ethernet Controller E810-XXV for SFP */
+#define ICE_DEV_ID_E810_XXV_SFP		0x159B
 
 #endif /* _ICE_DEVIDS_H_ */
