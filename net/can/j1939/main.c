@@ -360,6 +360,10 @@ static int j1939_netdev_notify(struct notifier_block *nb,
 		break;
 	}
 
+	/* The last reference of priv is dropped by the RCU deferred
+	 * j1939_sk_sock_destruct() of the last socket, so we can
+	 * safely drop this reference here.
+	 */
 	j1939_priv_put(priv);
 
 notify_done:
