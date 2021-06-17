@@ -435,15 +435,14 @@ static inline void put_tcp_super(struct super_block *sb)
 		cifs_sb_deactive(sb);
 }
 
-static void reconn_inval_dfs_target(struct TCP_Server_Info *server,
-				    struct cifs_sb_info *cifs_sb,
-				    struct dfs_cache_tgt_list *tgt_list,
-				    struct dfs_cache_tgt_iterator **tgt_it)
+static void reconn_set_next_dfs_target(struct TCP_Server_Info *server,
+				       struct cifs_sb_info *cifs_sb,
+				       struct dfs_cache_tgt_list *tgt_list,
+				       struct dfs_cache_tgt_iterator **tgt_it)
 {
 	const char *name;
 
-	if (!cifs_sb || !cifs_sb->origin_fullpath || !tgt_list ||
-	    !server->nr_targets)
+	if (!cifs_sb || !cifs_sb->origin_fullpath)
 		return;
 
 	if (!*tgt_it) {
@@ -620,7 +619,7 @@ cifs_reconnect(struct TCP_Server_Info *server)
 		 * feature is disabled, then we will retry last server we
 		 * connected to before.
 		 */
-		reconn_inval_dfs_target(server, cifs_sb, &tgt_list, &tgt_it);
+		reconn_set_next_dfs_target(server, cifs_sb, &tgt_list, &tgt_it);
 #endif
 		rc = reconn_set_ipaddr(server);
 		if (rc) {
