@@ -1,5 +1,6 @@
 # Recreate any symlinks created since the orig.
 # Remove any files deleted from the orig.
+rm -f 'arch/um/kernel/gmon_syms.c'
 rm -f 'arch/x86/events/intel/rapl.c'
 rm -f 'drivers/crypto/hisilicon/sgl.h'
 rm -f 'drivers/gpu/drm/amd/display/dc/calcs/dcn_calc_math.h'
