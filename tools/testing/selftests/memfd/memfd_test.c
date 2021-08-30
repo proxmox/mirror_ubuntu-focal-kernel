@@ -28,6 +28,10 @@
 #define MFD_DEF_SIZE 8192
 #define STACK_SIZE 65536
 
+#ifndef F_SEAL_FUTURE_WRITE
+#define F_SEAL_FUTURE_WRITE 0x0010
+#endif
+
 /*
  * Default is not to test hugetlbfs
  */
