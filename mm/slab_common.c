@@ -1318,7 +1318,7 @@ void __init create_kmalloc_caches(slab_flags_t flags)
 
 			BUG_ON(!n);
 			kmalloc_caches[KMALLOC_DMA][i] = create_kmalloc_cache(
-				n, size, SLAB_CACHE_DMA | flags, 0, 0);
+				n, size, SLAB_CACHE_DMA | flags, 0, kmalloc_info[i].size);
 		}
 	}
 #endif
