@@ -928,11 +928,16 @@ kci_test_ip6gretap()
 	check_err $?
 
 	# test external mode
-	ip -netns "$testns" link add dev "$DEV_NS" type ip6gretap external
-	check_err $?
+	ip link help ip6gretap 2>&1 | grep -q "\[ external \]"
+	if [ $? -ne 0 ];then
+		echo "SKIP: ip6gretap: external mode: iproute2 too old"
+	else
+		ip -netns "$testns" link add dev "$DEV_NS" type ip6gretap external
+		check_err $?
 
-	ip -netns "$testns" link del "$DEV_NS"
-	check_err $?
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
+	fi
 
 	if [ $ret -ne 0 ]; then
 		echo "FAIL: ip6gretap"
@@ -962,35 +967,53 @@ kci_test_erspan()
 		return $ksft_skip
 	fi
 
-	# test native tunnel erspan v1
-	ip -netns "$testns" link add dev "$DEV_NS" type erspan seq \
-		key 102 local 172.16.1.100 remote 172.16.1.200 \
-		erspan_ver 1 erspan 488
-	check_err $?
+	ip link help erspan 2>&1 | grep -q "erspan_ver"
+	if [ $? -ne 0 ];then
+		# test native tunnel erspan v1 (default on older iproute2)
+		ip -netns "$testns" link add dev "$DEV_NS" type erspan seq \
+			key 102 local 172.16.1.100 remote 172.16.1.200 \
+			erspan 488
+		check_err $?
 
-	ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
-	check_err $?
+		ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
+		check_err $?
 
-	ip -netns "$testns" link set dev $DEV_NS up
-	check_err $?
+		ip -netns "$testns" link set dev $DEV_NS up
+		check_err $?
 
-	ip -netns "$testns" link del "$DEV_NS"
-	check_err $?
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
+	else
+		# test native tunnel erspan v1
+		ip -netns "$testns" link add dev "$DEV_NS" type erspan seq \
+			key 102 local 172.16.1.100 remote 172.16.1.200 \
+			erspan_ver 1 erspan 488
+		check_err $?
 
-	# test native tunnel erspan v2
-	ip -netns "$testns" link add dev "$DEV_NS" type erspan seq \
-		key 102 local 172.16.1.100 remote 172.16.1.200 \
-		erspan_ver 2 erspan_dir ingress erspan_hwid 7
-	check_err $?
+		ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
+		check_err $?
 
-	ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
-	check_err $?
+		ip -netns "$testns" link set dev $DEV_NS up
+		check_err $?
 
-	ip -netns "$testns" link set dev $DEV_NS up
-	check_err $?
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
 
-	ip -netns "$testns" link del "$DEV_NS"
-	check_err $?
+		# test native tunnel erspan v2
+		ip -netns "$testns" link add dev "$DEV_NS" type erspan seq \
+			key 102 local 172.16.1.100 remote 172.16.1.200 \
+			erspan_ver 2 erspan_dir ingress erspan_hwid 7
+		check_err $?
+
+		ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
+		check_err $?
+
+		ip -netns "$testns" link set dev $DEV_NS up
+		check_err $?
+
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
+	fi
 
 	# test external mode
 	ip -netns "$testns" link add dev "$DEV_NS" type erspan external
@@ -1027,43 +1050,67 @@ kci_test_ip6erspan()
 		return $ksft_skip
 	fi
 
-	# test native tunnel ip6erspan v1
-	ip -netns "$testns" link add dev "$DEV_NS" type ip6erspan seq \
-		key 102 local fc00:100::1 remote fc00:100::2 \
-		erspan_ver 1 erspan 488
-	check_err $?
+	ip link help erspan 2>&1 | grep -q "erspan_ver"
+	if [ $? -ne 0 ];then
+		# test native tunnel ip6erspan v1 (default on older iproute2)
+		ip -netns "$testns" link add dev "$DEV_NS" type ip6erspan seq \
+			key 102 local fc00:100::1 remote fc00:100::2 \
+			erspan 488
+		check_err $?
 
-	ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
-	check_err $?
+		ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
+		check_err $?
 
-	ip -netns "$testns" link set dev $DEV_NS up
-	check_err $?
+		ip -netns "$testns" link set dev $DEV_NS up
+		check_err $?
 
-	ip -netns "$testns" link del "$DEV_NS"
-	check_err $?
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
+	else
+		# test native tunnel ip6erspan v1
+		ip -netns "$testns" link add dev "$DEV_NS" type ip6erspan seq \
+			key 102 local fc00:100::1 remote fc00:100::2 \
+			erspan_ver 1 erspan 488
+		check_err $?
 
-	# test native tunnel ip6erspan v2
-	ip -netns "$testns" link add dev "$DEV_NS" type ip6erspan seq \
-		key 102 local fc00:100::1 remote fc00:100::2 \
-		erspan_ver 2 erspan_dir ingress erspan_hwid 7
-	check_err $?
+		ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
+		check_err $?
 
-	ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
-	check_err $?
+		ip -netns "$testns" link set dev $DEV_NS up
+		check_err $?
 
-	ip -netns "$testns" link set dev $DEV_NS up
-	check_err $?
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
 
-	ip -netns "$testns" link del "$DEV_NS"
-	check_err $?
+		# test native tunnel ip6erspan v2
+		ip -netns "$testns" link add dev "$DEV_NS" type ip6erspan seq \
+			key 102 local fc00:100::1 remote fc00:100::2 \
+			erspan_ver 2 erspan_dir ingress erspan_hwid 7
+		check_err $?
+
+		ip -netns "$testns" addr add dev "$DEV_NS" 10.1.1.100/24
+		check_err $?
+
+		ip -netns "$testns" link set dev $DEV_NS up
+		check_err $?
+
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
+	fi
 
 	# test external mode
-	ip -netns "$testns" link add dev "$DEV_NS" \
-		type ip6erspan external
-	check_err $?
+	ip link help ip6erspan | grep -q "\[ external \]"
+	if [ $? -ne 0 ];then
+		echo "SKIP: ip6erspan: external mode: iproute2 too old"
+		ret=0
+	else
+		ip -netns "$testns" link add dev "$DEV_NS" \
+			type ip6erspan external
+		check_err $?
 
-	ip -netns "$testns" link del "$DEV_NS"
-	check_err $?
+		ip -netns "$testns" link del "$DEV_NS"
+		check_err $?
+	fi
 
 	if [ $ret -ne 0 ]; then
 		echo "FAIL: ip6erspan"
