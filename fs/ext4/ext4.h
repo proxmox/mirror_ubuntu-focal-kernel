@@ -1556,6 +1556,9 @@ struct ext4_sb_info {
 	 */
 	struct percpu_rw_semaphore s_writepages_rwsem;
 	struct dax_device *s_daxdev;
+#ifdef CONFIG_EXT4_DEBUG
+	unsigned long s_simulate_fail;
+#endif
 };
 
 static inline struct ext4_sb_info *EXT4_SB(struct super_block *sb)
@@ -1590,6 +1593,40 @@ static inline int ext4_valid_inum(struct super_block *sb, unsigned long ino)
 	rcu_read_unlock();						   \
 	_v;								   \
 })
+
+/*
+ * Simulate_fail codes
+ */
+#define EXT4_SIM_BBITMAP_EIO	1
+#define EXT4_SIM_BBITMAP_CRC	2
+#define EXT4_SIM_IBITMAP_EIO	3
+#define EXT4_SIM_IBITMAP_CRC	4
+#define EXT4_SIM_INODE_EIO	5
+#define EXT4_SIM_INODE_CRC	6
+#define EXT4_SIM_DIRBLOCK_EIO	7
+#define EXT4_SIM_DIRBLOCK_CRC	8
+
+static inline bool ext4_simulate_fail(struct super_block *sb,
+				     unsigned long code)
+{
+#ifdef CONFIG_EXT4_DEBUG
+	struct ext4_sb_info *sbi = EXT4_SB(sb);
+
+	if (unlikely(sbi->s_simulate_fail == code)) {
+		sbi->s_simulate_fail = 0;
+		return true;
+	}
+#endif
+	return false;
+}
+
+static inline void ext4_simulate_fail_bh(struct super_block *sb,
+					 struct buffer_head *bh,
+					 unsigned long code)
+{
+	if (!IS_ERR(bh) && ext4_simulate_fail(sb, code))
+		clear_buffer_uptodate(bh);
+}
 
 /*
  * Error number codes for s_{first,last}_error_errno
