@@ -1117,6 +1117,9 @@ static struct mlx5_ib_mr *reg_create(struct ib_mr *ibmr, struct ib_pd *pd,
 			 get_octo_len(virt_addr, length, page_shift));
 	}
 
+	if (umem->is_peer && MLX5_CAP_GEN(dev->mdev, ats))
+		MLX5_SET(mkc, mkc, ma_tranlation_mode, 1);
+
 	err = mlx5_core_create_mkey(dev->mdev, &mr->mmkey, in, inlen);
 	if (err) {
 		mlx5_ib_warn(dev, "create mkey failed\n");
@@ -1295,7 +1298,9 @@ struct ib_mr *mlx5_ib_reg_user_mr(struct ib_pd *pd, u64 start, u64 length,
 
 	use_umr = mlx5_ib_can_use_umr(dev, true);
 
-	if (order <= mr_cache_max_order(dev) && use_umr) {
+	if (umem->is_peer && MLX5_CAP_GEN(dev->mdev, ats)) {
+		use_umr = false;
+	} else if (order <= mr_cache_max_order(dev) && use_umr) {
 		mr = alloc_mr_from_cache(pd, umem, virt_addr, length, ncont,
 					 page_shift, order, access_flags);
 		if (PTR_ERR(mr) == -EAGAIN) {
@@ -1320,6 +1325,8 @@ struct ib_mr *mlx5_ib_reg_user_mr(struct ib_pd *pd, u64 start, u64 length,
 
 	if (IS_ERR(mr)) {
 		err = PTR_ERR(mr);
+		if (umem->is_peer)
+			ib_umem_stop_invalidation_notifier(umem);
 		goto error;
 	}
 
@@ -1625,6 +1632,17 @@ static void dereg_mr(struct mlx5_ib_dev *dev, struct mlx5_ib_mr *mr)
 
 		/* Avoid double-freeing the umem. */
 		umem = NULL;
+	}
+	else {
+		/*
+		 * For peers, need to disable the invalidation notifier
+		 * before calling destroy_mkey().
+		 */
+		if (umem && umem->is_peer) {
+			if (unreg_umr(mr->dev ,mr))
+				return;
+			ib_umem_stop_invalidation_notifier(umem);
+		}
 	}
 
 	clean_mr(dev, mr);
