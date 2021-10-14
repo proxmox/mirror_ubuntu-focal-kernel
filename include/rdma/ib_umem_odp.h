@@ -130,9 +130,10 @@ struct ib_ucontext_per_mm {
 	struct rw_semaphore umem_rwsem;
 };
 
-struct ib_umem_odp *ib_umem_odp_get(struct ib_udata *udata, unsigned long addr,
-				    size_t size, int access);
-struct ib_umem_odp *ib_umem_odp_alloc_implicit(struct ib_udata *udata,
+struct ib_umem_odp *ib_umem_odp_get(struct ib_device *device,
+				    unsigned long addr, size_t size,
+				    int access);
+struct ib_umem_odp *ib_umem_odp_alloc_implicit(struct ib_device *device,
 					       int access);
 struct ib_umem_odp *ib_umem_odp_alloc_child(struct ib_umem_odp *root_umem,
 					    unsigned long addr, size_t size);
@@ -191,7 +192,7 @@ static inline int ib_umem_mmu_notifier_retry(struct ib_umem_odp *umem_odp,
 
 #else /* CONFIG_INFINIBAND_ON_DEMAND_PAGING */
 
-static inline struct ib_umem_odp *ib_umem_odp_get(struct ib_udata *udata,
+static inline struct ib_umem_odp *ib_umem_odp_get(struct ib_device *device,
 						  unsigned long addr,
 						  size_t size, int access)
 {

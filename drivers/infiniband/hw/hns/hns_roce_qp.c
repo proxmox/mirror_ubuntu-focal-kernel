@@ -833,7 +833,7 @@ static int alloc_qp_buf(struct hns_roce_dev *hr_dev, struct hns_roce_qp *hr_qp,
 	}
 
 	if (udata) {
-		hr_qp->umem = ib_umem_get(udata, addr, hr_qp->buff_size, 0);
+		hr_qp->umem = ib_umem_get(ibdev, addr, hr_qp->buff_size, 0);
 		if (IS_ERR(hr_qp->umem)) {
 			ret = PTR_ERR(hr_qp->umem);
 			goto err_inline;
