@@ -606,6 +606,9 @@ struct efa_admin_feature_queue_attr_desc {
 	/* The maximum size of LLQ in bytes */
 	u32 max_llq_size;
 
+	/* Maximum number of SGEs for a single RDMA read WQE */
+	u16 max_wr_rdma_sges;
+
 	/*
 	 * Maximum number of bytes that can be written to SQ between two
 	 * consecutive doorbells (in units of 64B). Driver must ensure that only
