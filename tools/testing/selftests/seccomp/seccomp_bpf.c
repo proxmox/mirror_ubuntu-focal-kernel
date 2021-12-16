@@ -44,6 +44,7 @@
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <linux/kcmp.h>
+#include <asm/ptrace.h>
 
 #include <unistd.h>
 #include <sys/syscall.h>
