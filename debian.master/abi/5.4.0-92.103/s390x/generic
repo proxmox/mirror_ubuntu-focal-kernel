@@ -1399,7 +1399,6 @@ EXPORT_SYMBOL	 drivers/net/ethernet/mellanox/mlxsw/mlxsw_core 0xff007c25	mlxsw_c
 EXPORT_SYMBOL	 drivers/net/ethernet/mellanox/mlxsw/mlxsw_pci 0x5f6a3b3e	mlxsw_pci_driver_register
 EXPORT_SYMBOL	 drivers/net/ethernet/mellanox/mlxsw/mlxsw_pci 0xbe7d04ed	mlxsw_pci_driver_unregister
 EXPORT_SYMBOL	 drivers/net/phy/bcm-phy-lib 0x9f2a7ecf	bcm54xx_auxctl_write
-EXPORT_SYMBOL	 drivers/net/phy/libphy 0x0147217b	mdio_driver_unregister
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x038a955b	phy_init_hw
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x04e2e589	__genphy_config_aneg
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x0900209b	phy_set_asym_pause
@@ -1415,6 +1414,7 @@ EXPORT_SYMBOL	 drivers/net/phy/libphy 0x34cbd018	phy_start_aneg
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x370f4377	phy_init_eee
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x3860d042	phy_ethtool_get_wol
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x3efe1703	phy_unregister_fixup_for_id
+EXPORT_SYMBOL	 drivers/net/phy/libphy 0x46ecc486	mdio_driver_register
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x48d9d189	phy_ethtool_nway_reset
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x49306920	mdio_device_register
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0x497c7cb7	phy_read_mmd
@@ -1485,6 +1485,7 @@ EXPORT_SYMBOL	 drivers/net/phy/libphy 0xd69403d2	genphy_suspend
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xd738ca1b	phy_unregister_fixup_for_uid
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xd8cfaeeb	phy_ethtool_sset
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xda2b0b54	phy_detach
+EXPORT_SYMBOL	 drivers/net/phy/libphy 0xdbf5e100	mdio_driver_unregister
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xdcf24c0a	mdiobus_write_nested
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xdd16ff1a	phy_drivers_unregister
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xdd774301	phy_device_create
@@ -1500,7 +1501,6 @@ EXPORT_SYMBOL	 drivers/net/phy/libphy 0xee6d7bf1	mdiobus_write
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xeee7a247	phy_remove_link_mode
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xf03c4652	phy_drivers_register
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xf22ee6c3	phy_support_asym_pause
-EXPORT_SYMBOL	 drivers/net/phy/libphy 0xf26c47ab	mdio_driver_register
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xf3e1e43a	phy_stop
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xf8fb721f	phy_attached_print
 EXPORT_SYMBOL	 drivers/net/phy/libphy 0xf926e21b	phy_ethtool_get_eee
