@@ -538,7 +538,6 @@ struct smb_vol {
 	char *username;
 	char *password;
 	char *domainname;
-	char *server_hostname;
 	char *UNC;
 	char *iocharset;  /* local code page for mapping to and from Unicode */
 	char source_rfc1001_name[RFC1001_NAME_LEN_WITH_NULL]; /* clnt nb name */
