@@ -426,6 +426,7 @@ int kvm_hvc_call_handler(struct kvm_vcpu *vcpu)
 				break;
 			}
 			break;
+#ifdef CONFIG_ARM64
 		case ARM_SMCCC_ARCH_WORKAROUND_3:
 			switch (arm64_get_spectre_bhb_state()) {
 			case SPECTRE_VULNERABLE:
@@ -438,6 +439,7 @@ int kvm_hvc_call_handler(struct kvm_vcpu *vcpu)
 				break;
 			}
 			break;
+#endif
 		}
 		break;
 	default:
@@ -464,8 +466,10 @@ int kvm_arm_copy_fw_reg_indices(struct kvm_vcpu *vcpu, u64 __user *uindices)
 	if (put_user(KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_2, uindices++))
 		return -EFAULT;
 
+#ifdef CONFIG_ARM64
 	if (put_user(KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_3, uindices++))
 		return -EFAULT;
+#endif
 
 	return 0;
 }
@@ -504,6 +508,7 @@ static int get_kernel_wa_level(u64 regid)
 			break;
 		}
 		return KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_2_UNKNOWN;
+#ifdef CONFIG_ARM64
 	case KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_3:
 		switch (arm64_get_spectre_bhb_state()) {
 		case SPECTRE_VULNERABLE:
@@ -514,6 +519,7 @@ static int get_kernel_wa_level(u64 regid)
 			return KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_3_NOT_REQUIRED;
 		}
 		return KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_3_NOT_AVAIL;
+#endif
         }
 
 	return -EINVAL;
@@ -529,7 +535,9 @@ int kvm_arm_get_fw_reg(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg)
 		val = kvm_psci_version(vcpu, vcpu->kvm);
 		break;
 	case KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_1:
+#ifdef CONFIG_ARM64
 	case KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_3:
+#endif
 		val = get_kernel_wa_level(reg->id) & KVM_REG_FEATURE_LEVEL_MASK;
 		break;
 	case KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_2:
@@ -582,7 +590,9 @@ int kvm_arm_set_fw_reg(struct kvm_vcpu *vcpu, const struct kvm_one_reg *reg)
 	}
 
 	case KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_1:
+#ifdef CONFIG_ARM64
 	case KVM_REG_ARM_SMCCC_ARCH_WORKAROUND_3:
+#endif
 		if (val & ~KVM_REG_FEATURE_LEVEL_MASK)
 			return -EINVAL;
 
