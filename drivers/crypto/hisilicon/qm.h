@@ -178,6 +178,8 @@ struct hisi_qm {
 	u32 error_mask;
 	u32 msi_mask;
 
+	struct workqueue_struct *wq;
+	struct work_struct work;
 	bool use_dma_api;
 };
 
@@ -208,8 +210,6 @@ struct hisi_qp {
 	struct hisi_qp_ops *hw_ops;
 	void *qp_ctx;
 	void (*req_cb)(struct hisi_qp *qp, void *data);
-	struct work_struct work;
-	struct workqueue_struct *wq;
 
 	struct hisi_qm *qm;
 };
