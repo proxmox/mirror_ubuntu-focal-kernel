@@ -104,8 +104,12 @@ EXPORT_SYMBOL(disable_sacf_uaccess);
 static inline unsigned long copy_from_user_mvcos(void *x, const void __user *ptr,
 						 unsigned long size)
 {
-	register unsigned long reg0 asm("0") = 0x01UL;
 	unsigned long tmp1, tmp2;
+	union oac spec = {
+		.oac2.as = PSW_BITS_AS_PRIMARY,
+		.oac2.a = 1,
+	};
+	register unsigned long reg0 asm("0") = spec.val;
 
 	tmp1 = -4096UL;
 	asm volatile(
@@ -179,8 +183,12 @@ EXPORT_SYMBOL(raw_copy_from_user);
 static inline unsigned long copy_to_user_mvcos(void __user *ptr, const void *x,
 					       unsigned long size)
 {
-	register unsigned long reg0 asm("0") = 0x010000UL;
 	unsigned long tmp1, tmp2;
+	union oac spec = {
+		.oac1.as = PSW_BITS_AS_PRIMARY,
+		.oac1.a = 1,
+	};
+	register unsigned long reg0 asm("0") = spec.val;
 
 	tmp1 = -4096UL;
 	asm volatile(
@@ -254,8 +262,14 @@ EXPORT_SYMBOL(raw_copy_to_user);
 static inline unsigned long copy_in_user_mvcos(void __user *to, const void __user *from,
 					       unsigned long size)
 {
-	register unsigned long reg0 asm("0") = 0x010001UL;
 	unsigned long tmp1, tmp2;
+	union oac spec = {
+		.oac1.as = PSW_BITS_AS_PRIMARY,
+		.oac1.a = 1,
+		.oac2.as = PSW_BITS_AS_PRIMARY,
+		.oac2.a = 1,
+	};
+	register unsigned long reg0 asm("0") = spec.val;
 
 	tmp1 = -4096UL;
 	/* FIXME: copy with reduced length. */
@@ -318,8 +332,12 @@ EXPORT_SYMBOL(raw_copy_in_user);
 
 static inline unsigned long clear_user_mvcos(void __user *to, unsigned long size)
 {
-	register unsigned long reg0 asm("0") = 0x010000UL;
 	unsigned long tmp1, tmp2;
+	union oac spec = {
+		.oac1.as = PSW_BITS_AS_PRIMARY,
+		.oac1.a = 1,
+	};
+	register unsigned long reg0 asm("0") = spec.val;
 
 	tmp1 = -4096UL;
 	asm volatile(

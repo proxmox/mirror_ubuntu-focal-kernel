@@ -62,52 +62,85 @@ raw_copy_to_user(void __user *to, const void *from, unsigned long n);
 
 #ifdef CONFIG_HAVE_MARCH_Z10_FEATURES
 
-#define __put_get_user_asm(to, from, size, spec)		\
-({								\
-	register unsigned long __reg0 asm("0") = spec;		\
-	int __rc;						\
-								\
-	asm volatile(						\
-		"0:	mvcos	%1,%3,%2\n"			\
-		"1:	xr	%0,%0\n"			\
-		"2:\n"						\
-		".pushsection .fixup, \"ax\"\n"			\
-		"3:	lhi	%0,%5\n"			\
-		"	jg	2b\n"				\
-		".popsection\n"					\
-		EX_TABLE(0b,3b) EX_TABLE(1b,3b)			\
-		: "=d" (__rc), "+Q" (*(to))			\
-		: "d" (size), "Q" (*(from)),			\
-		  "d" (__reg0), "K" (-EFAULT)			\
-		: "cc");					\
-	__rc;							\
+union oac {
+	unsigned int val;
+	struct {
+		struct {
+			unsigned short key : 4;
+			unsigned short	   : 4;
+			unsigned short as  : 2;
+			unsigned short	   : 4;
+			unsigned short k   : 1;
+			unsigned short a   : 1;
+		} oac1;
+		struct {
+			unsigned short key : 4;
+			unsigned short	   : 4;
+			unsigned short as  : 2;
+			unsigned short	   : 4;
+			unsigned short k   : 1;
+			unsigned short a   : 1;
+		} oac2;
+	};
+};
+
+#define __put_get_user_asm(to, from, size, oac_spec)			\
+({									\
+	int __rc;							\
+									\
+	asm volatile(							\
+		"	lr	0,%[spec]\n"				\
+		"0:	mvcos	%[_to],%[_from],%[_size]\n"		\
+		"1:	xr	%[rc],%[rc]\n"				\
+		"2:\n"							\
+		".pushsection .fixup, \"ax\"\n"				\
+		"3:	lhi	%[rc],%[retval]\n"			\
+		"	jg	2b\n"					\
+		".popsection\n"						\
+		EX_TABLE(0b,3b) EX_TABLE(1b,3b)				\
+		: [rc] "=&d" (__rc), [_to] "+Q" (*(to))			\
+		: [_size] "d" (size), [_from] "Q" (*(from)),		\
+		  [retval] "K" (-EFAULT), [spec] "d" (oac_spec.val)	\
+		: "cc", "0");						\
+	__rc;								\
 })
+
+#define __put_user_asm(to, from, size)				\
+	__put_get_user_asm(to, from, size, ((union oac) {	\
+		.oac1.as = PSW_BITS_AS_PRIMARY,			\
+		.oac1.a = 1					\
+	}))
+
+#define __get_user_asm(to, from, size)				\
+	__put_get_user_asm(to, from, size, ((union oac) {	\
+		.oac2.as = PSW_BITS_AS_PRIMARY,			\
+		.oac2.a = 1					\
+	}))							\
 
 static __always_inline int __put_user_fn(void *x, void __user *ptr, unsigned long size)
 {
-	unsigned long spec = 0x010000UL;
 	int rc;
 
 	switch (size) {
 	case 1:
-		rc = __put_get_user_asm((unsigned char __user *)ptr,
-					(unsigned char *)x,
-					size, spec);
+		rc = __put_user_asm((unsigned char __user *)ptr,
+				    (unsigned char *)x,
+				    size);
 		break;
 	case 2:
-		rc = __put_get_user_asm((unsigned short __user *)ptr,
-					(unsigned short *)x,
-					size, spec);
+		rc = __put_user_asm((unsigned short __user *)ptr,
+				    (unsigned short *)x,
+				    size);
 		break;
 	case 4:
-		rc = __put_get_user_asm((unsigned int __user *)ptr,
-					(unsigned int *)x,
-					size, spec);
+		rc = __put_user_asm((unsigned int __user *)ptr,
+				    (unsigned int *)x,
+				    size);
 		break;
 	case 8:
-		rc = __put_get_user_asm((unsigned long __user *)ptr,
-					(unsigned long *)x,
-					size, spec);
+		rc = __put_user_asm((unsigned long __user *)ptr,
+				    (unsigned long *)x,
+				    size);
 		break;
 	}
 	return rc;
@@ -115,29 +148,28 @@ static __always_inline int __put_user_fn(void *x, void __user *ptr, unsigned lon
 
 static __always_inline int __get_user_fn(void *x, const void __user *ptr, unsigned long size)
 {
-	unsigned long spec = 0x01UL;
 	int rc;
 
 	switch (size) {
 	case 1:
-		rc = __put_get_user_asm((unsigned char *)x,
-					(unsigned char __user *)ptr,
-					size, spec);
+		rc = __get_user_asm((unsigned char *)x,
+				    (unsigned char __user *)ptr,
+				    size);
 		break;
 	case 2:
-		rc = __put_get_user_asm((unsigned short *)x,
-					(unsigned short __user *)ptr,
-					size, spec);
+		rc = __get_user_asm((unsigned short *)x,
+				    (unsigned short __user *)ptr,
+				    size);
 		break;
 	case 4:
-		rc = __put_get_user_asm((unsigned int *)x,
-					(unsigned int __user *)ptr,
-					size, spec);
+		rc = __get_user_asm((unsigned int *)x,
+				    (unsigned int __user *)ptr,
+				    size);
 		break;
 	case 8:
-		rc = __put_get_user_asm((unsigned long *)x,
-					(unsigned long __user *)ptr,
-					size, spec);
+		rc = __get_user_asm((unsigned long *)x,
+				    (unsigned long __user *)ptr,
+				    size);
 		break;
 	}
 	return rc;
