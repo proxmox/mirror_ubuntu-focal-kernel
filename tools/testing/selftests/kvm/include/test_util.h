@@ -39,4 +39,7 @@ void test_assert(bool exp, const char *exp_str,
 		    #a, #b, #a, (unsigned long) __a, #b, (unsigned long) __b); \
 } while (0)
 
+#define TEST_FAIL(fmt, ...) \
+	TEST_ASSERT(false, fmt, ##__VA_ARGS__)
+
 #endif /* SELFTEST_KVM_TEST_UTIL_H */
