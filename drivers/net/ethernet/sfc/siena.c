@@ -946,6 +946,12 @@ fail:
 
 #endif /* CONFIG_SFC_MTD */
 
+static unsigned int efx_siena_recycle_ring_size(const struct efx_nic *efx)
+{
+	/* Maximum link speed is 10G */
+	return EFX_RECYCLE_RING_SIZE_10G;
+}
+
 /**************************************************************************
  *
  * Revision-dependent attributes used by efx.c and nic.c
@@ -1084,4 +1090,5 @@ const struct efx_nic_type siena_a0_nic_type = {
 			     1 << HWTSTAMP_FILTER_PTP_V1_L4_EVENT |
 			     1 << HWTSTAMP_FILTER_PTP_V2_L4_EVENT),
 	.rx_hash_key_size = 16,
+	.rx_recycle_ring_size = efx_siena_recycle_ring_size,
 };

@@ -607,6 +607,11 @@ void efx_farch_filter_sync_rx_mode(struct efx_nic *efx);
 
 bool efx_nic_event_present(struct efx_channel *channel);
 
+static inline unsigned int efx_rx_recycle_ring_size(const struct efx_nic *efx)
+{
+	return efx->type->rx_recycle_ring_size(efx);
+}
+
 /* Some statistics are computed as A - B where A and B each increase
  * linearly with some hardware counter(s) and the counters are read
  * asynchronously.  If the counters contributing to B are always read

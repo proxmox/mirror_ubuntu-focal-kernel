@@ -1243,6 +1243,7 @@ struct efx_udp_tunnel {
  * @udp_tnl_add_port: Add a UDP tunnel port
  * @udp_tnl_has_port: Check if a port has been added as UDP tunnel
  * @udp_tnl_del_port: Remove a UDP tunnel port
+ * @rx_recycle_ring_size: Size of the RX recycle ring
  * @revision: Hardware architecture revision
  * @txd_ptr_tbl_base: TX descriptor ring base address
  * @rxd_ptr_tbl_base: RX descriptor ring base address
@@ -1413,6 +1414,7 @@ struct efx_nic_type {
 	int (*udp_tnl_add_port)(struct efx_nic *efx, struct efx_udp_tunnel tnl);
 	bool (*udp_tnl_has_port)(struct efx_nic *efx, __be16 port);
 	int (*udp_tnl_del_port)(struct efx_nic *efx, struct efx_udp_tunnel tnl);
+	unsigned int (*rx_recycle_ring_size)(const struct efx_nic *efx);
 
 	int revision;
 	unsigned int txd_ptr_tbl_base;

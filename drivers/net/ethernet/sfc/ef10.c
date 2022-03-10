@@ -6593,6 +6593,30 @@ out_unlock:
 	return rc;
 }
 
+static unsigned int efx_ef10_recycle_ring_size(const struct efx_nic *efx)
+{
+	unsigned int ret = EFX_RECYCLE_RING_SIZE_10G;
+
+	/* There is no difference between PFs and VFs. The side is based on
+	 * the maximum link speed of a given NIC.
+	 */
+	switch (efx->pci_dev->device & 0xfff) {
+	case 0x0903:	/* Farmingdale can do up to 10G */
+		break;
+	case 0x0923:	/* Greenport can do up to 40G */
+	case 0x0a03:	/* Medford can do up to 40G */
+		ret *= 4;
+		break;
+	default:	/* Medford2 can do up to 100G */
+		ret *= 10;
+	}
+
+	if (IS_ENABLED(CONFIG_PPC64))
+		ret *= 4;
+
+	return ret;
+}
+
 #define EF10_OFFLOAD_FEATURES		\
 	(NETIF_F_IP_CSUM |		\
 	 NETIF_F_HW_VLAN_CTAG_FILTER |	\
@@ -6705,6 +6729,7 @@ const struct efx_nic_type efx_hunt_a0_vf_nic_type = {
 	.hwtstamp_filters = 1 << HWTSTAMP_FILTER_NONE |
 			    1 << HWTSTAMP_FILTER_ALL,
 	.rx_hash_key_size = 40,
+	.rx_recycle_ring_size = efx_ef10_recycle_ring_size,
 };
 
 const struct efx_nic_type efx_hunt_a0_nic_type = {
@@ -6840,4 +6865,5 @@ const struct efx_nic_type efx_hunt_a0_nic_type = {
 	.hwtstamp_filters = 1 << HWTSTAMP_FILTER_NONE |
 			    1 << HWTSTAMP_FILTER_ALL,
 	.rx_hash_key_size = 40,
+	.rx_recycle_ring_size = efx_ef10_recycle_ring_size,
 };
