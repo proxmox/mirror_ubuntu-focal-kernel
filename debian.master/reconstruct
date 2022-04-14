@@ -1,5 +1,6 @@
 # Recreate any symlinks created since the orig.
 # Remove any files deleted from the orig.
+rm -f 'arch/parisc/kernel/module.lds'
 rm -f 'arch/parisc/lib/string.S'
 rm -f 'arch/um/kernel/gmon_syms.c'
 rm -f 'arch/x86/events/intel/rapl.c'
@@ -22,6 +23,8 @@ chmod +x 'debian/scripts/config-check'
 chmod +x 'debian/scripts/control-create'
 chmod +x 'debian/scripts/dkms-build'
 chmod +x 'debian/scripts/dkms-build--nvidia-N'
+chmod +x 'debian/scripts/dkms-build--virtualbox-guest'
+chmod +x 'debian/scripts/dkms-build-configure--zfs'
 chmod +x 'debian/scripts/file-downloader'
 chmod +x 'debian/scripts/helpers/close'
 chmod +x 'debian/scripts/helpers/open'
