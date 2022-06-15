@@ -21749,6 +21749,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xa2a0ac7b	spi_mem_exec_op
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2b9128c	fwnode_graph_get_remote_port_parent
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2be1aa1	blkg_print_stat_bytes
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2c74331	list_lru_count_node
+EXPORT_SYMBOL_GPL	 vmlinux 0xa2d0b59d	mmio_stale_data_clear
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2e1b3ef	trace_printk_init_buffers
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2eb1563	rio_mport_get_physefb
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2f3e09f	ata_wait_after_reset

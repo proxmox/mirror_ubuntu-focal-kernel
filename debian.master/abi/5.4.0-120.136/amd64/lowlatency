@@ -21799,6 +21799,7 @@ EXPORT_SYMBOL_GPL	 vmlinux 0xa2a8a7cd	devm_gpiod_get_optional
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2ac7997	platform_device_put
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2ba1a2f	platform_get_irq_byname
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2c74331	list_lru_count_node
+EXPORT_SYMBOL_GPL	 vmlinux 0xa2d0b59d	mmio_stale_data_clear
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2d22af0	arizona_dev_exit
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2d8a5c3	ata_timing_compute
 EXPORT_SYMBOL_GPL	 vmlinux 0xa2e1b3ef	trace_printk_init_buffers
