@@ -3476,7 +3476,6 @@ pata_sl82c105
 pata_triflex
 pata_via
 pbias-regulator
-pblk
 pc300too
 pc87360
 pc87427

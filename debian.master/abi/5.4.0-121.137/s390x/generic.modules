@@ -626,7 +626,6 @@ overlay
 p8022
 paes_s390
 parman
-pblk
 pcbc
 pci-pf-stub
 pci-stub

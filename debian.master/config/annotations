@@ -6309,11 +6309,6 @@ CONFIG_INTERCONNECT_QCOM                        policy<{'arm64': 'y', 'armhf': '
 CONFIG_INTERCONNECT_QCOM_QCS404                 policy<{'arm64': 'm', 'armhf': 'm'}>
 CONFIG_INTERCONNECT_QCOM_SDM845                 policy<{'arm64': 'm'}>
 
-# Menu: Device Drivers >> Open-Channel SSD target support
-CONFIG_NVM                                      policy<{'amd64': 'y', 'arm64': 'y', 'armhf': 'y', 'i386': 'y', 'ppc64el': 'y', 's390x': 'y'}>
-CONFIG_NVM_PBLK                                 policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'm', 'i386': 'm', 'ppc64el': 'm', 's390x': 'm'}>
-CONFIG_NVM_PBLK_DEBUG                           policy<{'amd64': 'n', 'arm64': 'n', 'armhf': 'n', 'i386': 'n', 'ppc64el': 'n', 's390x': 'n'}>
-
 # Menu: Device Drivers >> PCCard (PCMCIA/CardBus) support
 CONFIG_PCCARD                                   policy<{'amd64': 'm', 'arm64': 'm', 'armhf': 'n', 'i386': 'm', 'ppc64el': 'n', 's390x': 'n'}>
 CONFIG_CARDBUS                                  policy<{'amd64': 'y', 'arm64': 'y', 'i386': 'y'}>
