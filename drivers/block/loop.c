@@ -497,7 +497,8 @@ static void lo_rw_aio_do_completion(struct loop_cmd *cmd)
 		return;
 	kfree(cmd->bvec);
 	cmd->bvec = NULL;
-	blk_mq_complete_request(rq);
+	if (likely(!blk_should_fake_timeout(rq->q)))
+		blk_mq_complete_request(rq);
 }
 
 static void lo_rw_aio_complete(struct kiocb *iocb, long ret, long ret2)
@@ -2027,7 +2028,8 @@ static void loop_handle_cmd(struct loop_cmd *cmd)
 	/* complete non-aio request */
 	if (!cmd->use_aio || ret) {
 		cmd->ret = ret ? -EIO : 0;
-		blk_mq_complete_request(rq);
+		if (likely(!blk_should_fake_timeout(rq->q)))
+			blk_mq_complete_request(rq);
 	}
 }
 
