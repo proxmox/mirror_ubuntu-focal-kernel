@@ -6542,6 +6542,7 @@ EXPORT_SYMBOL	 vmlinux 0x2a206115	skb_vlan_push
 EXPORT_SYMBOL	 vmlinux 0x2a2fa260	nla_policy_len
 EXPORT_SYMBOL	 vmlinux 0x2a303d4d	check_signature
 EXPORT_SYMBOL	 vmlinux 0x2a758690	dma_virt_ops
+EXPORT_SYMBOL	 vmlinux 0x2a886df4	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0x2a8d3b13	xfrm_register_km
 EXPORT_SYMBOL	 vmlinux 0x2a97fd9d	__skb_gso_segment
 EXPORT_SYMBOL	 vmlinux 0x2a9a3905	vme_master_get
@@ -10715,7 +10716,6 @@ EXPORT_SYMBOL	 vmlinux 0xed8c7a9d	kernel_sendmsg_locked
 EXPORT_SYMBOL	 vmlinux 0xed8ec2f5	sk_mc_loop
 EXPORT_SYMBOL	 vmlinux 0xeda4043e	neigh_connected_output
 EXPORT_SYMBOL	 vmlinux 0xedaf0429	sock_release
-EXPORT_SYMBOL	 vmlinux 0xedb63954	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0xedb94751	kthread_create_on_node
 EXPORT_SYMBOL	 vmlinux 0xedbaee5e	nla_strcmp
 EXPORT_SYMBOL	 vmlinux 0xedc03953	iounmap

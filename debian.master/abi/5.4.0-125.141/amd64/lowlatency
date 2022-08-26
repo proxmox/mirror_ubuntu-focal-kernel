@@ -9380,6 +9380,7 @@ EXPORT_SYMBOL	 vmlinux 0xb12cbacb	fb_unregister_client
 EXPORT_SYMBOL	 vmlinux 0xb12dc706	jbd2_journal_submit_inode_data_buffers
 EXPORT_SYMBOL	 vmlinux 0xb1356e31	pci_dev_driver
 EXPORT_SYMBOL	 vmlinux 0xb1415f1d	crypto_sha256_update
+EXPORT_SYMBOL	 vmlinux 0xb1455e9f	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0xb14ab1ef	hdmi_audio_infoframe_init
 EXPORT_SYMBOL	 vmlinux 0xb15ab250	dma_fence_array_create
 EXPORT_SYMBOL	 vmlinux 0xb15cb01e	single_release
@@ -10483,7 +10484,6 @@ EXPORT_SYMBOL	 vmlinux 0xe3d193f6	generic_start_io_acct
 EXPORT_SYMBOL	 vmlinux 0xe3d857ea	__cpu_active_mask
 EXPORT_SYMBOL	 vmlinux 0xe3ec2f2b	alloc_chrdev_region
 EXPORT_SYMBOL	 vmlinux 0xe3f54a84	kmem_cache_free
-EXPORT_SYMBOL	 vmlinux 0xe3f7d558	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0xe3ff2c41	get_random_u64
 EXPORT_SYMBOL	 vmlinux 0xe3fffae9	__x86_indirect_thunk_rbp
 EXPORT_SYMBOL	 vmlinux 0xe40976c0	pnp_range_reserved

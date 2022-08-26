@@ -6756,7 +6756,6 @@ EXPORT_SYMBOL	 vmlinux 0x3955fcf6	__kfifo_in_r
 EXPORT_SYMBOL	 vmlinux 0x39991865	icmp_global_allow
 EXPORT_SYMBOL	 vmlinux 0x399ad043	__kfifo_dma_out_finish_r
 EXPORT_SYMBOL	 vmlinux 0x39b52d19	__bitmap_and
-EXPORT_SYMBOL	 vmlinux 0x39d82c58	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0x39dd3d68	vmf_insert_pfn
 EXPORT_SYMBOL	 vmlinux 0x39e9e839	__page_cache_alloc
 EXPORT_SYMBOL	 vmlinux 0x39ef3fcf	ab3100_event_register
@@ -8397,6 +8396,7 @@ EXPORT_SYMBOL	 vmlinux 0x86d5334b	blk_post_runtime_resume
 EXPORT_SYMBOL	 vmlinux 0x86e350b7	dec_zone_page_state
 EXPORT_SYMBOL	 vmlinux 0x86fb9b05	bitmap_parse_user
 EXPORT_SYMBOL	 vmlinux 0x86fe0aef	__lookup_constant
+EXPORT_SYMBOL	 vmlinux 0x8727db7c	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0x8761c87b	rps_needed
 EXPORT_SYMBOL	 vmlinux 0x8767571c	node_data
 EXPORT_SYMBOL	 vmlinux 0x8775af15	iput

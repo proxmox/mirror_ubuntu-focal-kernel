@@ -5500,7 +5500,6 @@ EXPORT_SYMBOL	 vmlinux 0x05453712	mmc_can_discard
 EXPORT_SYMBOL	 vmlinux 0x05483f5b	dev_uc_sync
 EXPORT_SYMBOL	 vmlinux 0x05519d30	refcount_dec_and_lock_irqsave
 EXPORT_SYMBOL	 vmlinux 0x05690176	blk_queue_stack_limits
-EXPORT_SYMBOL	 vmlinux 0x058118fe	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0x05a6347c	xfrm_lookup_with_ifid
 EXPORT_SYMBOL	 vmlinux 0x05aca104	scsi_host_put
 EXPORT_SYMBOL	 vmlinux 0x05b07140	flush_icache_user_range
@@ -7323,6 +7322,7 @@ EXPORT_SYMBOL	 vmlinux 0x618911fc	numa_node
 EXPORT_SYMBOL	 vmlinux 0x619cb7dd	simple_read_from_buffer
 EXPORT_SYMBOL	 vmlinux 0x61a741b9	vm_map_pages_zero
 EXPORT_SYMBOL	 vmlinux 0x61ac476b	tag_pages_for_writeback
+EXPORT_SYMBOL	 vmlinux 0x61aed629	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0x61b7b126	simple_strtoull
 EXPORT_SYMBOL	 vmlinux 0x61bce225	netpoll_cleanup
 EXPORT_SYMBOL	 vmlinux 0x61ea189b	fb_pad_aligned_buffer

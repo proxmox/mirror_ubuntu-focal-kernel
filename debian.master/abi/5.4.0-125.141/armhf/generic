@@ -6333,7 +6333,6 @@ EXPORT_SYMBOL	 vmlinux 0x2c9d3756	vsnprintf
 EXPORT_SYMBOL	 vmlinux 0x2ccdf4bd	d_genocide
 EXPORT_SYMBOL	 vmlinux 0x2cfde9a2	warn_slowpath_fmt
 EXPORT_SYMBOL	 vmlinux 0x2d0fd11a	mmc_can_sanitize
-EXPORT_SYMBOL	 vmlinux 0x2d1357e2	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0x2d140a58	genl_unlock
 EXPORT_SYMBOL	 vmlinux 0x2d30596c	from_kqid_munged
 EXPORT_SYMBOL	 vmlinux 0x2d3385d3	system_wq
@@ -9474,6 +9473,7 @@ EXPORT_SYMBOL	 vmlinux 0xc188a57f	pci_resize_resource
 EXPORT_SYMBOL	 vmlinux 0xc199f0dd	devm_free_irq
 EXPORT_SYMBOL	 vmlinux 0xc19c6458	sock_alloc_send_pskb
 EXPORT_SYMBOL	 vmlinux 0xc19dfe79	param_ops_bool
+EXPORT_SYMBOL	 vmlinux 0xc1c3a361	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0xc1d8cfaf	__fdget
 EXPORT_SYMBOL	 vmlinux 0xc1e0a5ca	seq_putc
 EXPORT_SYMBOL	 vmlinux 0xc1e0f47c	_dev_warn

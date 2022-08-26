@@ -5569,7 +5569,6 @@ EXPORT_SYMBOL	 vmlinux 0xaebe3535	cad_pid
 EXPORT_SYMBOL	 vmlinux 0xaecf1642	blk_integrity_unregister
 EXPORT_SYMBOL	 vmlinux 0xaedb060a	thaw_super
 EXPORT_SYMBOL	 vmlinux 0xaee77733	bh_submit_read
-EXPORT_SYMBOL	 vmlinux 0xaf07a901	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0xaf0e2a77	dma_direct_sync_sg_for_device
 EXPORT_SYMBOL	 vmlinux 0xaf135a98	__free_pages
 EXPORT_SYMBOL	 vmlinux 0xaf155b28	wait_for_completion_io
@@ -6648,6 +6647,7 @@ EXPORT_SYMBOL	 vmlinux 0xee7633fa	finish_no_open
 EXPORT_SYMBOL	 vmlinux 0xee7f02ab	simple_statfs
 EXPORT_SYMBOL	 vmlinux 0xee8d74d6	jiffies64_to_nsecs
 EXPORT_SYMBOL	 vmlinux 0xee91879b	rb_first_postorder
+EXPORT_SYMBOL	 vmlinux 0xee9daa28	blk_mq_complete_request
 EXPORT_SYMBOL	 vmlinux 0xeed048fe	pcibios_bus_to_resource
 EXPORT_SYMBOL	 vmlinux 0xeef0f54f	security_binder_transfer_file
 EXPORT_SYMBOL	 vmlinux 0xef25c621	bdevname
